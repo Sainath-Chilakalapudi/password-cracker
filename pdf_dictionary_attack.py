@@ -1,3 +1,4 @@
+import argparse
 import pikepdf
 from tqdm import tqdm
 
@@ -20,5 +21,13 @@ def decrypt_pdf_with_password_list(passwords_file, pdf_file):
     print("[-] Password not found.")
 
 
-# Usage example
-decrypt_pdf_with_password_list("passwords.txt", "protected.pdf")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="PDF Password Decrypter")
+    parser.add_argument("passwords_file", help="Path to the passwords file")
+    parser.add_argument("pdf_file", help="Path to the protected PDF file")
+    args = parser.parse_args()
+
+    decrypt_pdf_with_password_list(args.passwords_file, args.pdf_file)
+
+##usage in command line
+##python pdf_dictionary_attack.py passwords.txt protected.pdf
